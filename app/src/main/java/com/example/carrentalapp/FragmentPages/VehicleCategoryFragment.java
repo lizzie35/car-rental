@@ -1,6 +1,8 @@
 package com.example.carrentalapp.FragmentPages;
 
 
+import static android.util.Log.i;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -53,7 +55,9 @@ public class VehicleCategoryFragment extends Fragment implements VehicleCategory
         return view;
     }
 
+
     private void initComponents(View view) {
+        i("Vehicle category", " View created");
 
         vehicleCategoryDao = Room.databaseBuilder(getContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
                 .build()
@@ -64,6 +68,8 @@ public class VehicleCategoryFragment extends Fragment implements VehicleCategory
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         list = (ArrayList<VehicleCategory>) vehicleCategoryDao.getAllCategory();
+        i("Vehicle list", " Vehicle category list = " + list.toString());
+
         adapter = new VehicleCategoryAdapter(getContext(), list,this);
         recyclerView.setAdapter(adapter);
     }

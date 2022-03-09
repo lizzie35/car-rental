@@ -1,14 +1,19 @@
 package com.example.carrentalapp.FragmentPages;
 
 
+import static android.util.Log.i;
+
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +52,12 @@ public class BookingFragment extends Fragment implements BookingAdapter.onBookin
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_booking, container, false);
-        initComponents(view);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        initComponents(view);
     }
 
     private void initComponents(View view) {
@@ -63,6 +72,7 @@ public class BookingFragment extends Fragment implements BookingAdapter.onBookin
         customerID = Integer.valueOf(Session.read(getContext(),"customerID","-1"));
 
         bookings = (ArrayList<Booking>) bookingDao.getAllCustomerBookings(customerID);
+        Log.i("Bookings", "Bookings = " + bookings.toString());
         bookingAdapter = new BookingAdapter(getContext(),bookings,this);
         recyclerView.setAdapter(bookingAdapter);
     }

@@ -1,5 +1,7 @@
 package com.example.carrentalapp;
 
+import static android.util.Log.i;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -199,7 +201,7 @@ public class BookingCarActivity extends AppCompatActivity {
 
         //GET THE CUSTOMER OBJECT FROM THE INFORMATION PROVIDED
         Customer customer = customerDao.findUser(_firstName,_lastName,_email);
-
+//        i("Customer", "Customer = "+ customer.getCustomerID());
         //IF CUSTOMER NOT FOUND DO NOTHING
         if(customer == null){
             toast("Customer Do Not Exist");

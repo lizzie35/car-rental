@@ -141,7 +141,7 @@ app:layout_constraintTop_toTopOf="parent">
                             android:id="@+id/calendar_icon_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/calendar_icon" />
+                            app:srcCompat="@drawable/calender_icon" />
 
                         <TextView
                             android:id="@+id/pickupDate"
@@ -244,7 +244,7 @@ app:layout_constraintTop_toTopOf="parent">
                             android:id="@+id/calendar_icon_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/calendar_icon" />
+                            app:srcCompat="@drawable/calender_icon" />
 
                         <TextView
                             android:id="@+id/returnDate"

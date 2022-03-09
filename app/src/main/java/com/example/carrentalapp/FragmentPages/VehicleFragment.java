@@ -1,9 +1,13 @@
 package com.example.carrentalapp.FragmentPages;
 
 
+import static android.util.Log.i;
+
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -50,13 +54,18 @@ public class VehicleFragment extends Fragment implements VehicleAdapter.onVehicl
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_vehicle, container, false);
-        initComponents(view);
-
+        i("Vehicle Fragment", " View created");
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        initComponents(view);
     }
 
     private void initComponents(View view) {
 
+        i("Vehicle Fragment", "Initialized components");
         selectVehicleCategory = getArguments().getString("CATEGORY");
 
         vehicleDao = Room.databaseBuilder(getContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()

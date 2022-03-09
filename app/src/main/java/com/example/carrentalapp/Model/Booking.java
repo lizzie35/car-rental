@@ -10,7 +10,30 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-@Entity(primaryKeys = {"bookingID","customerID"})
+@Entity(primaryKeys = {"bookingID","customerID"},
+foreignKeys = {
+        @ForeignKey(entity = Customer.class,
+        parentColumns = "customerID",
+        childColumns = "customerID",
+        onDelete = ForeignKey.CASCADE),
+        @ForeignKey(entity = Administrator.class,
+                parentColumns = "administratorID",
+                childColumns = "administratorID",
+                onDelete = ForeignKey.SET_NULL),
+        @ForeignKey(entity = Billing.class,
+                parentColumns = "billingID",
+                childColumns = "billingID",
+                onDelete = ForeignKey.CASCADE),
+        @ForeignKey(entity = Vehicle.class,
+                parentColumns = "vehicleID",
+                childColumns = "vehicleID",
+                onDelete = ForeignKey.CASCADE),
+        @ForeignKey(entity = Insurance.class,
+                parentColumns = "insuranceID",
+                childColumns = "insuranceID",
+                onDelete = ForeignKey.CASCADE)
+}
+)
 public class Booking implements Serializable {
 
 
@@ -21,35 +44,20 @@ public class Booking implements Serializable {
 
     private String bookingStatus;
 
-    @ForeignKey(entity = Customer.class,
-            parentColumns = "parentClassColumn",
-            childColumns = "childClassColumn",
-            onDelete = ForeignKey.CASCADE)
+
     private int customerID;
 
-    @ForeignKey(entity = Administrator.class,
-            parentColumns = "parentClassColumn",
-            childColumns = "childClassColumn",
-            onDelete = ForeignKey.SET_NULL)
+
     private int administratorID;
 
-    @ForeignKey(entity = Billing.class,
-            parentColumns = "parentClassColumn",
-            childColumns = "childClassColumn",
-            onDelete = ForeignKey.CASCADE)
+
     private int billingID;
 
 
-    @ForeignKey(entity = Vehicle.class,
-            parentColumns = "parentClassColumn",
-            childColumns = "childClassColumn",
-            onDelete = ForeignKey.CASCADE)
+
     private int vehicleID;
 
-    @ForeignKey(entity = Insurance.class,
-            parentColumns = "parentClassColumn",
-            childColumns = "childClassColumn",
-            onDelete = ForeignKey.CASCADE)
+
     private String insuranceID;
 
     public Booking(int bookingID, Calendar pickupDate, Calendar returnDate, String bookingStatus, int customerID, int administratorID, int billingID, int vehicleID, String insuranceID) {

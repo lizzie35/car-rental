@@ -6,7 +6,12 @@ import androidx.room.PrimaryKey;
 
 import java.util.Calendar;
 
-@Entity
+@Entity(foreignKeys = {
+        @ForeignKey(entity = Payment.class,
+                parentColumns = "paymentID",
+                childColumns = "paymentID",
+                onDelete = ForeignKey.SET_NULL)
+})
 public class Billing {
 
     @PrimaryKey
@@ -17,10 +22,6 @@ public class Billing {
 
     private double latefees;
 
-    @ForeignKey(entity = Payment.class,
-            parentColumns = "parentClassColumn",
-            childColumns = "childClassColumn",
-            onDelete = ForeignKey.SET_NULL)
     private int paymentID;
 
 
