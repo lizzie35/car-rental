@@ -127,24 +127,24 @@ public class RegistrationActivity extends AppCompatActivity{
     //Create the customer object from the form
     private Customer createCustomerObject(){
 
-        String firstName = ((EditText)findViewById(R.id.firstName)).getText().toString();
-        String middleName = ((EditText)findViewById(R.id.middleName)).getText().toString();
-        String lastName = ((EditText)findViewById(R.id.lastName)).getText().toString();
+        String firstName = ((EditText)findViewById(R.id.firstName)).getText().toString().trim();
+        String middleName = ((EditText)findViewById(R.id.middleName)).getText().toString().trim();
+        String lastName = ((EditText)findViewById(R.id.lastName)).getText().toString().trim();
 
-        String email = ((EditText)findViewById(R.id.email)).getText().toString();
+        String email = ((EditText)findViewById(R.id.email)).getText().toString().trim();
 
-        String driverLicense = ((EditText)findViewById(R.id.license)).getText().toString();
-        String expiry = expiryDate.getText().toString();
-        String dateOfBirth = dob.getText().toString();
+        String driverLicense = ((EditText)findViewById(R.id.license)).getText().toString().trim();
+        String expiry = expiryDate.getText().toString().trim();
+        String dateOfBirth = dob.getText().toString().trim();
 
-        String phoneNumber = ((EditText)findViewById(R.id.phoneNumber)).getText().toString();
+        String phoneNumber = ((EditText)findViewById(R.id.phoneNumber)).getText().toString().trim();
 
-        String street = ((EditText)findViewById(R.id.street)).getText().toString();
-        String city = ((EditText)findViewById(R.id.city)).getText().toString();
-        String postalCode = ((EditText)findViewById(R.id.postalCode)).getText().toString();
+        String street = ((EditText)findViewById(R.id.street)).getText().toString().trim();
+        String city = ((EditText)findViewById(R.id.city)).getText().toString().trim();
+        String postalCode = ((EditText)findViewById(R.id.postalCode)).getText().toString().trim();
 
-        String password = ((EditText)findViewById(R.id.password)).getText().toString();
-        String confirm_password = ((EditText)findViewById(R.id.confirmPassword)).getText().toString();
+        String password = ((EditText)findViewById(R.id.password)).getText().toString().trim();
+        String confirm_password = ((EditText)findViewById(R.id.confirmPassword)).getText().toString().trim();
 
         boolean success = fieldRequiredCheck(firstName,lastName,email,driverLicense,expiry,dateOfBirth,phoneNumber,street,city,postalCode);
 

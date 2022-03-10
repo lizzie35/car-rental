@@ -128,7 +128,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:paddingLeft="15dp"
-                                    android:text="Mr. Jenil Vekaria"
+                                    android:text="Mr. Elizabeth Okoth"
                                     android:textColor="@color/colorPrimary" />
 
                             </LinearLayout>
@@ -152,7 +152,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:paddingLeft="15dp"
-                                    android:text="jenilvekaria@yahoo.ca"
+                                    android:text="anyangoliz.eo@gmail.com"
                                     android:textColor="@color/colorPrimary" />
 
                             </LinearLayout>
@@ -176,7 +176,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:paddingLeft="15dp"
-                                    android:text="(416) 000 0000"
+                                    android:text="(254) 000 0000"
                                     android:textColor="@color/colorPrimary" />
 
                             </LinearLayout>
@@ -278,7 +278,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/roboto"
                                     android:paddingLeft="15dp"
-                                    android:text="$50/Day"
+                                    android:text="$550/Day"
                                     android:textColor="@color/colorPrimary" />
                             </LinearLayout>
 

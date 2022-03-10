@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import androidx.room.Database;
 import androidx.room.Room;
 
 import android.app.DatePickerDialog;
@@ -57,6 +58,8 @@ public class BookingCarActivity extends AppCompatActivity {
     private BookingDao bookingDao;
     private CustomerDao customerDao;
 
+    private Project_Database db;
+
     //BY DEFAULT TITLE SELECTION
     String mrMs = "mr";
 
@@ -78,6 +81,8 @@ public class BookingCarActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
+        db = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries().build();
+
         //BACK BUTTON
         back = findViewById(R.id.back);
         //CONTINUE BOOKING
@@ -109,14 +114,14 @@ public class BookingCarActivity extends AppCompatActivity {
         returnDate.setText(dateFormat.format(_return.getTime()));
         returnTime.setText(timeFormat.format(_return.getTime()));
 
-        //Get the Customer Room (table)
-        customerDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .customerDao();
-        //Get the Customer Room (table)
-        bookingDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .bookingDao();
+//        //Get the Customer Room (table)
+//        customerDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
+//                .build()
+//                .customerDao();
+//        //Get the Customer Room (table)
+//        bookingDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
+//                .build()
+//                .bookingDao();
     }
 
     //LISTEN HANDLER
@@ -200,10 +205,12 @@ public class BookingCarActivity extends AppCompatActivity {
         }
 
         //GET THE CUSTOMER OBJECT FROM THE INFORMATION PROVIDED
+        CustomerDao customerDao = db.customerDao();
         Customer customer = customerDao.findUser(_firstName,_lastName,_email);
-//        i("Customer", "Customer = "+ customer.getCustomerID());
         //IF CUSTOMER NOT FOUND DO NOTHING
-        if(customer == null){
+        if(customer != null){
+            Log.i("Driver detail", _firstName+_lastName+_email);
+
             toast("Customer Do Not Exist");
             return;
         }
@@ -212,7 +219,7 @@ public class BookingCarActivity extends AppCompatActivity {
 
         //GENERATE UNIQUE BOOKING ID
         int bookingID = generateID(400,499);
-        while(bookingDao.exist(bookingID)){
+        while(db.bookingDao().exist(bookingID)){
             bookingID = generateID(400,499);
         }
 
