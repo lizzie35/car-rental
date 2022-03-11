@@ -1,9 +1,11 @@
 package com.example.carrentalapp;
 
-import static android.util.Log.i;
 
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.room.Database;
@@ -83,6 +85,7 @@ public class BookingCarActivity extends AppCompatActivity {
     private void initComponents() {
         db = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries().build();
 
+//        db = Project_Database.getInstance(this);
         //BACK BUTTON
         back = findViewById(R.id.back);
         //CONTINUE BOOKING
@@ -193,10 +196,10 @@ public class BookingCarActivity extends AppCompatActivity {
         });
 
         //GET ALL THE DRIVER DETAIL FIELD
-        String _firstName = firstName.getText().toString().toLowerCase();
-        String _lastName = lastName.getText().toString().toLowerCase();
-        String _email= email.getText().toString().toLowerCase();
-        String _phoneNumber = phoneNumber.getText().toString();
+        String _firstName = firstName.getText().toString().trim();
+        String _lastName = lastName.getText().toString().trim();
+        String _email= email.getText().toString().trim();
+        String _phoneNumber = phoneNumber.getText().toString().trim();
 
         //ENSURE THAT ALL FIELDS ARE NOT EMPTY
         if(!fieldCheck(_firstName,_lastName,_email,_phoneNumber)) {
@@ -206,9 +209,16 @@ public class BookingCarActivity extends AppCompatActivity {
 
         //GET THE CUSTOMER OBJECT FROM THE INFORMATION PROVIDED
         CustomerDao customerDao = db.customerDao();
+        String open = "false";
+        if(db.isOpen()){
+            open = "true";
+        }
+
         Customer customer = customerDao.findUser(_firstName,_lastName,_email);
+
         //IF CUSTOMER NOT FOUND DO NOTHING
-        if(customer != null){
+        Toast.makeText(this, open, Toast.LENGTH_LONG).show();
+        if(customer == null){
             Log.i("Driver detail", _firstName+_lastName+_email);
 
             toast("Customer Do Not Exist");
@@ -245,6 +255,7 @@ public class BookingCarActivity extends AppCompatActivity {
     }
 
     //OPEN CALENDAR DIALOG
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void openCalendar(final Calendar rentalDate, final TextView rentalDateText) {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this);
 

@@ -21,7 +21,7 @@ public interface CustomerDao {
     @Query("SELECT * FROM Customer WHERE customerID = :customerID")
     Customer findUser(int customerID);
 
-    @Query("SELECT * FROM Customer WHERE email = :email AND firstName = :firstName AND lastName = :lastName")
+    @Query("SELECT * FROM Customer WHERE firstName = :firstName AND lastName = :lastName AND email = :email")
     Customer findUser(String firstName, String lastName, String email);
 
     @Query("DELETE FROM Customer WHERE customerID >= 0")

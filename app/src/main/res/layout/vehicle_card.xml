@@ -45,7 +45,7 @@
             <Button
                 android:id="@+id/book"
                 android:layout_width="124dp"
-                android:layout_height="36dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/select_button"
                 android:backgroundTint="@color/colorSecondary"
                 android:fontFamily="@font/roboto_light"

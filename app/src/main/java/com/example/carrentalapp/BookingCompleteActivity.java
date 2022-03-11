@@ -6,6 +6,7 @@ import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -58,7 +59,9 @@ public class BookingCompleteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("booking_complete","BookingCompleteActivity started");
         setContentView(R.layout.activity_booking_complete);
+        Log.i("booking_complete","BookingCompleteActivity view created");
 
         initComponents();
         listenHandler();
@@ -105,6 +108,7 @@ public class BookingCompleteActivity extends AppCompatActivity {
         chosenInsurance = insuranceDao.findInsurance(booking.getInsuranceID());
         vehicle = vehicleDao.findVehicle(booking.getVehicleID());
 
+        bookingID = findViewById(R.id.bookingID);
         bookingID = findViewById(R.id.bookingID);
     }
 

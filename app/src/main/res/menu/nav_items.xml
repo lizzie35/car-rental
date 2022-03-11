@@ -7,10 +7,10 @@
         android:title="Vehicle" />
     <item
         android:id="@+id/nav_booking"
-        android:icon="@drawable/car_background"
+        android:icon="@drawable/car_booking"
         android:title="Bookings" />
     <item
         android:id="@+id/nav_account"
-        android:icon="@drawable/car_background"
+        android:icon="@drawable/baseline_account"
         android:title="Account" />
 </menu>

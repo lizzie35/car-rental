@@ -66,6 +66,8 @@ public class BookingSummary extends AppCompatActivity {
 
     private ProgressBar paidLoading;
 
+    private Project_Database db;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,25 +113,15 @@ public class BookingSummary extends AppCompatActivity {
         //VEHICLE IMAGE
         vehicleImage = findViewById(R.id.vehicleImage);
 
+        //database instance
+        db = Project_Database.getInstance(this);
         //DATABASE TABLE
-        customerDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .customerDao();
-        vehicleDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .vehicleDao();
-        bookingDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .bookingDao();
-        insuranceDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .insuranceDao();
-        billingDao  = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .billingDao();
-        paymentDao = Room.databaseBuilder(getApplicationContext(), Project_Database.class, "car_rental_db").allowMainThreadQueries()
-                .build()
-                .paymentDao();
+        customerDao = db.customerDao();
+        vehicleDao = db.vehicleDao();
+        bookingDao = db.bookingDao();
+        insuranceDao = db.insuranceDao();
+        billingDao  = db.billingDao();
+        paymentDao = db.paymentDao();
         //GET BOOKING OBJECT WHICH WAS PASSED FROM PREVIOUS PAGE
         booking = (Booking) getIntent().getSerializableExtra("BOOKING");
         chosenInsurance = insuranceDao.findInsurance(booking.getInsuranceID());
@@ -138,7 +130,7 @@ public class BookingSummary extends AppCompatActivity {
         paidLoading = findViewById(R.id.paidLoading);
         paidLoading.setVisibility(View.INVISIBLE);
     }
-
+    //GOING BACK BUTTON
     private void listenHandler() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +138,7 @@ public class BookingSummary extends AppCompatActivity {
                 finish();
             }
         });
-
+        //CONFIRM AND BOOK
         book.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -158,9 +150,11 @@ public class BookingSummary extends AppCompatActivity {
                 }
                 generateBilling_Payment();
                 Intent bookingCompletePage = new Intent(BookingSummary.this,BookingCompleteActivity.class);
+//                bookingCompletePage.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 bookingCompletePage.putExtra("BOOKING",booking);
                 startActivity(bookingCompletePage);
-            }
+            }//            @RequiresApi(api = Build.VERSION_CODES.O)
+
         });
 
         payNow.setOnClickListener(new View.OnClickListener() {
@@ -203,12 +197,15 @@ public class BookingSummary extends AppCompatActivity {
         booking.setBillingID(billingID);
         booking.setBookingStatus("Waiting for approval");
 
-        bookingDao.insert(booking);
-        billingDao.insert(billing);
-        paymentDao.insert(payment);
+        new Thread(() -> {
+            bookingDao.insert(booking);
+            billingDao.insert(billing);
+            paymentDao.insert(payment);
+            vehicle.setAvailability(false);
+            vehicleDao.update(vehicle);
+        });
 
-        vehicle.setAvailability(false);
-        vehicleDao.update(vehicle);
+
     }
 
     private void displayCustomerInformation() {

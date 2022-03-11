@@ -94,7 +94,7 @@
     <Button
         android:id="@+id/login"
         android:layout_width="0dp"
-        android:layout_height="@dimen/buttonSize"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/round_button"
         android:text="Login"
@@ -140,46 +140,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/a_member"
         app:layout_constraintStart_toEndOf="@+id/a_member"
         app:layout_constraintTop_toTopOf="@+id/a_member" />
-
-    <Button
-        android:id="@+id/customer"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/round_button"
-        android:text="Customer"
-        app:layout_constraintStart_toStartOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
-
-    <Button
-        android:id="@+id/vehicleCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round_button"
-        android:text="Vehicle Category"
-        app:layout_constraintStart_toStartOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/customer" />
-
-    <Button
-        android:id="@+id/vehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/round_button"
-        android:text="Vehicle"
-        app:layout_constraintStart_toStartOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/vehicleCategory" />
-
-    <Button
-        android:id="@+id/populate"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/round_button"
-        android:text="Populate"
-        app:layout_constraintStart_toStartOf="@+id/login"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
