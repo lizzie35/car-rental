@@ -94,7 +94,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 CustomerDao customerDao = db.customerDao();
                 Customer check = customerDao.findUser(email.getText().toString().trim(), password.getText().toString().trim());
-                toast(("email" + email.getText().toString().trim() + " password = " + password.getText().toString().trim()));
                 if (check != null) {
                     Session.save(LoginActivity.this, "customerID", check.getCustomerID() + "");
                     Session.save(LoginActivity.this, "isLoggedIn", "true");

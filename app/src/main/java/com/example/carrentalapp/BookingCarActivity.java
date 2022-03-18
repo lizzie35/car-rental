@@ -128,71 +128,36 @@ public class BookingCarActivity extends AppCompatActivity {
     }
 
     //LISTEN HANDLER
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void listenHandler() {
 
         //GOING BACK BUTTON
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        back.setOnClickListener(v -> finish());
 
         //CONTINUE BOOKING
-        continueBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent bookingSummaryPage = new Intent(BookingCarActivity.this, BookingSummary.class);
-                startActivity(bookingSummaryPage);
-            }
+        continueBooking.setOnClickListener(v -> {
+            Intent bookingSummaryPage = new Intent(BookingCarActivity.this, BookingSummary.class);
+            startActivity(bookingSummaryPage);
         });
 
         //PICKUP DATE AND TIME LISTENER
-        pickupDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCalendar(_pickup,pickupDate);
-            }
-        });
-        pickupTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openTimePicker(_pickup, pickupTime);
-            }
-        });
+        pickupDate.setOnClickListener(v -> openCalendar(_pickup,pickupDate));
+        pickupTime.setOnClickListener(v -> openTimePicker(_pickup, pickupTime));
 
         //RETURN DATE AND TIME LISTENER
-        returnDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCalendar(_return,returnDate);
-            }
-        });
-        returnTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { openTimePicker(_return, returnTime);
-            }
-        });
+        returnDate.setOnClickListener(v -> openCalendar(_return,returnDate));
+        returnTime.setOnClickListener(v -> openTimePicker(_return, returnTime));
 
-        continueBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validate();
-            }
-        });
+        continueBooking.setOnClickListener(v -> validate());
 
     }
 
     private void validate() {
 
         //GET CUSTOMER TITLE
-        customerTitle.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton title = findViewById(checkedId);
-                mrMs = title.getText().toString().toLowerCase();
-            }
+        customerTitle.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton title = findViewById(checkedId);
+            mrMs = title.getText().toString().toLowerCase();
         });
 
         //GET ALL THE DRIVER DETAIL FIELD
@@ -209,9 +174,9 @@ public class BookingCarActivity extends AppCompatActivity {
 
         //GET THE CUSTOMER OBJECT FROM THE INFORMATION PROVIDED
         CustomerDao customerDao = db.customerDao();
-        String open = "false";
+        String open = "amazing car";
         if(db.isOpen()){
-            open = "true";
+            open = "amazing car";
         }
 
         Customer customer = customerDao.findUser(_firstName,_lastName,_email);

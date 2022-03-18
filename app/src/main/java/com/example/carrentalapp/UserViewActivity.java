@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.carrentalapp.FragmentPages.AccountFragment;
+import com.example.carrentalapp.FragmentPages.AddCarFragment;
 import com.example.carrentalapp.FragmentPages.BookingFragment;
 import com.example.carrentalapp.FragmentPages.VehicleCategoryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,6 +23,7 @@ public class UserViewActivity extends AppCompatActivity {
     private VehicleCategoryFragment vehicleCategoryFragment;
     private BookingFragment bookingFragment;
     private AccountFragment accountFragment;
+    private AddCarFragment AddCarFragment;
 
     private String loggedInCustomerID;
 
@@ -55,6 +57,10 @@ public class UserViewActivity extends AppCompatActivity {
                     case R.id.nav_account :
                         setFragment(accountFragment, loggedInCustomerID);
                         return true;
+
+                    case R.id.nav_addCar :
+                        setFragment(AddCarFragment, loggedInCustomerID);
+                        return true;
                 }
 
                 return false;
@@ -84,6 +90,7 @@ public class UserViewActivity extends AppCompatActivity {
         vehicleCategoryFragment = new VehicleCategoryFragment();
         bookingFragment= new BookingFragment();
         accountFragment = new AccountFragment();
+        AddCarFragment = new AddCarFragment();
 
         loggedInCustomerID = getIntent().getStringExtra("CUSTOMERID");
 

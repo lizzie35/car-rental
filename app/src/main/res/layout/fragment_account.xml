@@ -4,21 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/logout"
     tools:context=".FragmentPages.BookingFragment">
+
+    <TextView
+        android:id="@+id/logouttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="80dp"
+        android:gravity="center"
+        android:text="Oh no! You're leaving..."
+        android:textColor="@color/colorSecondary"
+        android:textSize="23sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="@font/roboto_thin" />
+    <TextView
+        android:id="@+id/logouttext2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="230dp"
+        android:gravity="center"
+        android:layout_marginEnd="80dp"
+        android:layout_below="@id/logouttext"
+        android:text=" Are you sure?"
+        android:textColor="@color/colorSecondary"
+        android:textSize="23sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="@font/roboto_thin" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFAB00">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/logout"
+            android:layout_width="186dp"
+            android:layout_height="41dp"
+            android:layout_below="@id/nologout"
+            android:layout_centerHorizontal="true"
+            android:text="Yes,Log Me out"
+            app:layout_constraintStart_toEndOf="@id/nologout"
+            app:layout_constraintStart_toStartOf="@id/nologout"
+            app:layout_constraintTop_toBottomOf="@id/nologout" />
+
+        <Button
+            android:id="@+id/nologout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:layout_centerHorizontal="true"
+            android:text="Naah,Just Kidding"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

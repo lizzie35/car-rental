@@ -244,8 +244,8 @@
 
                 <Button
                     android:id="@+id/reset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/buttonSize"
+                    android:layout_width="319dp"
+                    android:layout_height="37dp"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/round_button"
                     android:backgroundTint="#D50000"
@@ -258,15 +258,15 @@
 
                 <Button
                     android:id="@+id/vehicleCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/buttonSize"
-                    android:layout_marginTop="16dp"
+                    android:layout_width="254dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/round_card"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Add Vehicle Category"
                     app:layout_constraintEnd_toEndOf="@+id/reset"
-                    app:layout_constraintHorizontal_bias="0.471"
+                    app:layout_constraintHorizontal_bias="0.492"
                     app:layout_constraintStart_toStartOf="@+id/reset"
                     app:layout_constraintTop_toBottomOf="@+id/reset" />
 

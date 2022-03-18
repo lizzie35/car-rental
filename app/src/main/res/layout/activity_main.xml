@@ -9,7 +9,10 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background"
+        android:src="@drawable/background"
+        android:contentDescription=""
+        tools:ignore="ContentDescription"
+        android:scaleType="centerCrop"
         android:rotation="0" />
 
     <TextView
@@ -17,11 +20,11 @@
         android:layout_height="wrap_content"
         android:text="CAR HIRE"
         android:rotation="1"
-        android:textColor = "#000"
-        android:textSize="32sp"
+        android:textColor = "@color/design_default_color_primary"
+        android:textSize="40sp"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-condensed-light"
+        android:textStyle="bold|italic"
+        android:fontFamily="@font/roboto_thin"
         android:layout_marginTop="70dp"
         android:layout_marginHorizontal="90dp" />
 
